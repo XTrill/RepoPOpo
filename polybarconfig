@@ -54,7 +54,7 @@ font-2 = siji:pixelsize=10
 label-active-font = 0
 
 modules-left = script ewmh xwindow
-modules-center = mpd 
+modules-center = cmus 
 modules-right =  cpu memory eth volume date powermenu vpncheck
 
 tray-position = right
@@ -205,29 +205,19 @@ label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
-[module/mpd]
-type = internal/mpd
+[module/cmus]
+type = custom/script
 
-format-online = <label-song>  <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>
+exec = sh ~/.config/polybar/cmus.sh
+exec-if = pgrep -x cmus
+interval = 1
 
-label-song-maxlen = 25
-label-song-ellipsis = true
-#label-song = ? %title%
-label-song =  %title%
+click-left = cmus-remote --pause
+click-right = cmus-remote --stop
 
-icon-prev = 
-icon-seekb = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-icon-seekf = 
-
-icon-random = 
-icon-repeat = 
-
-toggle-on-foreground = ${colors.primary}
-toggle-off-foreground = #66
+format = <label>
+format-underline = ${colors.primary}
+label = %output%
 
 [module/xbacklight]
 type = internal/xbacklight
